@@ -1,5 +1,5 @@
 import {showVideoDialog} from "@cdo/apps/code-studio/videos";
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {videoDataShape} from './types';
 
 const styles = {
@@ -22,6 +22,7 @@ const styles = {
 export default class VideoThumbnail extends Component {
   static propTypes = {
     video: videoDataShape,
+    onClick: PropTypes.func,
   };
 
   render() {
@@ -30,6 +31,7 @@ export default class VideoThumbnail extends Component {
       <a
         style={styles.videoLink}
         onClick={() => {
+          this.props.onClick && this.props.onClick();
           showVideoDialog({
             src: video.src,
             name: video.name,
